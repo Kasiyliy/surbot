@@ -7,6 +7,11 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-progress-bar type="indeterminate" *ngIf="loading"></ion-progress-bar>
+  <ion-card>
+    <p style="margin: 20px">{{now | date:'medium'}}</p>
+  </ion-card>
   <ion-card>
     <ion-item>
       <ion-button style="float: left;" [routerLink]="'/auth'" >
@@ -29,5 +34,32 @@
       </ion-item>
     </div>
   </ion-card>
+
+
+  <form style="margin: 5px; border: 2px; border-radius: 10px" action="#" class="ho-form ho-form-boxed" [formGroup]="todoForm">
+    <ion-item>
+      <ion-label position="floating">ToDo</ion-label>
+      <ion-input formControlName="name"></ion-input>
+    </ion-item>
+    <ion-button style="margin: 20px" [disabled]="loading || !todoForm.valid" (click)="add()">Add</ion-button>
+
+  </form>
+
+  <ion-list [lines]="'full'" >
+    <ion-label style="margin: 20px">ToDo list</ion-label>
+    <ion-item *ngFor="let todo of todos">
+      <ion-icon style="margin: 20px" name="checkmark"></ion-icon>
+      <ion-label>
+        <ion-text>
+          <p>
+            {{todo.name}}
+          </p>
+          <ion-button color="danger"  [disabled]="loading" float-right (click)="delete(todo)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
