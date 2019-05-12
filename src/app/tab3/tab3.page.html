@@ -8,24 +8,26 @@
 
 <ion-content>
   <ion-card>
-    <ion-item href="#" class="activated">
-      <ion-label>
-        <ion-icon name="contact" slot="start"></ion-icon>
-      </ion-label>
-      <ion-text>Nuradinova Amina </ion-text>
+    <ion-item>
+      <ion-button style="float: left;" [routerLink]="'/auth'" >
+        <ion-icon name="log-out"></ion-icon>
+        Logout
+      </ion-button>
     </ion-item>
-    <ion-item href="#" class="activated">
-      <ion-label>
-        <ion-icon name="call" slot="start"></ion-icon>
-      </ion-label>
-      <ion-text>+7 777 777 7777</ion-text>
-    </ion-item>
-    <ion-item href="#" class="activated">
-      <ion-label>
-        <ion-icon name="mail" slot="start"></ion-icon>
-      </ion-label>
-      <ion-text>beksultankyzy.a@gmail.com</ion-text>
-    </ion-item>
+    <div *ngIf="user">
+      <ion-item class="activated" >
+        <ion-label>
+          <ion-icon name="contact" slot="start"></ion-icon>
+        </ion-label>
+        <ion-text>{{user.name}}</ion-text>
+      </ion-item>
+      <ion-item class="activated">
+        <ion-label>
+          <ion-icon name="mail" slot="start"></ion-icon>
+        </ion-label>
+        <ion-text>{{user.email}}</ion-text>
+      </ion-item>
+    </div>
   </ion-card>
 
 </ion-content>
